@@ -1,0 +1,10 @@
+<div class="container-fluid mt-5">
+  <label for="exp" class="form-label">Enter Expression</label>
+  <input name="exp" id="exp" class="input-group" [(ngModel)]="expression" (input)="setIsVerified()"/>
+  <br>
+  <button class="btn btn-primary" (click)="verifyExpression()">Verify</button>
+</div>
+
+<ng-template [ngIf]="isVerified">
+  <p> Expression is: {{ isExpressionValid }}</p>
+</ng-template>
