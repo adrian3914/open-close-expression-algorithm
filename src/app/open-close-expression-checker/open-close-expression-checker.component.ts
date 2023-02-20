@@ -1,34 +1,34 @@
-import {Component, OnChanges} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-open-close-expression-checker',
   templateUrl: './open-close-expression-checker.component.html',
   styleUrls: ['./open-close-expression-checker.component.css']
 })
-export class OpenCloseExpressionCheckerComponent{
+export class OpenCloseExpressionCheckerComponent {
   expression: string = '';
-  openChars = [ '(', '{', '<', '['];
-  closeChars = [ ')', '}', '>', ']'];
-  isExpressionValid: boolean  = false;
+  openChars = ['(', '{', '<', '['];
+  closeChars = [')', '}', '>', ']'];
+  isExpressionValid: boolean = false;
   isVerified: boolean = true;
 
   verifyExpression() {
-    if (this.expression.length === 0){
+    if (this.expression.length === 0) {
       return;
     }
     this.isVerified = true;
     let openCharsStack: string[] = [];
-    let chars = [... this.expression];
+    let chars = [...this.expression];
     let status = true;
     let closeCharCounter = 0;
 
-    chars.forEach( (char) => {
+    chars.forEach((char) => {
 
-      if (this.openChars.includes(char)){
+      if (this.openChars.includes(char)) {
         openCharsStack.push(char);
       }
 
-      if (this.closeChars.includes(char)){
+      if (this.closeChars.includes(char)) {
         if (openCharsStack.length === 0) {
           this.isExpressionValid = false;
           return;
@@ -36,30 +36,30 @@ export class OpenCloseExpressionCheckerComponent{
 
         closeCharCounter++;
 
-        switch (char){
+        switch (char) {
           case ')' : {
-            if (openCharsStack.pop() !== '('){
-             status = false;
+            if (openCharsStack.pop() !== '(') {
+              status = false;
             }
             break;
           }
 
           case '}': {
-            if (openCharsStack.pop() !== '{'){
+            if (openCharsStack.pop() !== '{') {
               status = false;
             }
             break;
           }
 
           case '>': {
-            if (openCharsStack.pop() !== '<'){
+            if (openCharsStack.pop() !== '<') {
               status = false;
             }
             break;
           }
 
           case ']' : {
-            if (openCharsStack.pop() !== '['){
+            if (openCharsStack.pop() !== '[') {
               status = false;
             }
             break;
@@ -68,7 +68,7 @@ export class OpenCloseExpressionCheckerComponent{
         }
       }
 
-      if (!status){
+      if (!status) {
         this.isExpressionValid = false;
         return;
       }
