@@ -11,6 +11,7 @@ export class OpenCloseExpressionCheckerComponent {
   closeChars = [')', '}', '>', ']'];
   isExpressionValid: boolean = false;
   isVerified: boolean = false;
+  explanation: string = 'We can verify if an expression containing (), [], {} and <> is in proper order';
 
   verifyExpression() {
     if (this.expression.length === 0) {
@@ -78,7 +79,7 @@ export class OpenCloseExpressionCheckerComponent {
 
       this.expression = '';
 
-      this.isExpressionValid = ( status && closeCharCounter > 0 && openCharsStack.length === 0);
+      this.isExpressionValid = ( status && closeCharCounter > 0 && openCharsStack.length === 0 && this.isExpressionValid);
     } else {
       this.expression = '';
       this.isExpressionValid = true;
